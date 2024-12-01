@@ -96,3 +96,1358 @@ Element   /   Frequency
 
 
 //Program -2 
+#include<stdio.h> 
+#include<stdlib.h> 
+#include<math.h> 
+#define MS 50 
+char postfix[50]; 
+struct stack 
+{  
+int top;  
+  int item[MS]; 
+}s; 
+void push(int value) 
+{  
+   if(s.top==(MS-1))  
+  {  
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 10 
+ 
+   printf("overflow\n");  
+  } 
+  else 
+  {   
+   s.item[++s.top]=value;  
+  } 
+} 
+int pop() 
+{  
+   if(s.top==-1) 
+  { 
+   printf("\n stack underflow"); 
+   exit(0); 
+  } 
+  return(s.item[s.top--]); 
+} 
+int empty() 
+{  
+   if(s.top==-1)  
+  {   
+   return 1;  
+  }  
+  else  
+  { 
+   return 0;  
+  } 
+} 
+ int operation(int a,int b,char c) 
+{  
+   switch(c)  
+  { 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 11 
+ 
+   case '^':return(pow(a,b)); 
+   case '*':return(a*b); 
+   case '%':return(a%b); 
+   case '/':return(a/b); 
+   case '+':return(a+b); 
+   case '-':return(a-b); 
+  } 
+} 
+int evaluate() 
+{  
+ int i,a,b,ans,value; 
+ char symb; 
+ for(i=0;postfix[i]!='\0';i++) 
+ { 
+  symb=postfix[i]; 
+  if((symb>='0')&&(symb<='9')) 
+  { 
+   push((int)(symb-'0')); 
+  } 
+  else 
+  { 
+   a=pop(); 
+   b=pop(); 
+   value=operation(b,a,symb); 
+   push(value); 
+  } 
+ } 
+ ans=pop(); 
+ return ans; 
+} 
+ 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 12 
+ 
+void main() 
+{ 
+  s.top=-1; 
+  int ans; 
+  printf("Enter the postfix expression\n"); 
+  gets(postfix); 
+  ans=evaluate(); 
+  printf("The resultant ans is %d\n",ans); 
+} 
+B. Procedure: 
+ 
+#include<stdio.h> 
+#include<stdlib.h> 
+#define MS 5 
+char infix[50],postfix[50],item; 
+void convert(); 
+struct stack 
+{ 
+int top; 
+  char item[MS]; 
+}s; 
+void push(char value) 
+{ 
+if(s.top==(MS-1)) 
+  { 
+   printf("The stack is overflow\n"); 
+   exit(0); 
+  } 
+ 
+  else 
+  { 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 13 
+ 
+    s.item[++s.top]=value; 
+  } 
+} 
+char pop() 
+{ 
+if(s.top= =-1) 
+  { 
+   printf("stack underflow\n"); 
+   exit(0); 
+  } 
+  return(s.item[s.top--]); 
+} 
+int empty() 
+{ 
+if(s.top= = -1) 
+  { 
+   return 1; 
+  } 
+  else 
+  { 
+   return 0; 
+  } 
+} 
+int precedence(char c) 
+{ 
+switch(c) 
+  { 
+   case '^':return 3;   
+   case '*': 
+   case '/': 
+   case '%':return 2; 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 14 
+ 
+   case '+': 
+   case '-':return 1; 
+   case '(':return 0;   
+  } 
+} 
+void main() 
+{ 
+  s.top = -1; 
+  printf("Enter the infix expression :\n"); 
+  gets(infix); 
+  convert(); 
+  printf("The postfix expression is:\n"); 
+  puts(postfix); 
+} 
+void convert() 
+{ 
+int i,pos=0; 
+  char symb,t; 
+  for(i=0;infix[i]!='\0';i++) 
+  { 
+   symb=infix[i]; 
+   switch(symb) 
+   { 
+    case '(':push(symb); 
+    break; 
+    case ')':while((t=pop())!='(') 
+    { 
+     postfix[pos++]=t; 
+    }  
+    break; 
+    case '^': 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 15 
+ 
+    case '*': 
+    case '/': 
+    case '%': 
+    case '+': 
+case’-‘:         
+while((!empty())&&((precedence(s.item[s.top]))>=precedence(symb))) 
+     { 
+      postfix[pos++]=pop(); 
+     } 
+     push(symb); 
+     break; 
+       default: postfix[pos++]=symb; 
+     break; 
+   } 
+  } 
+  while(!empty()) 
+  { 
+   postfix[pos++]=pop(); 
+  } 
+  postfix[pos]='\0'; 
+} 
+3.6. A. Results 
+Enter the postfix expression 
+123+*321-+* 
+The resultant ans is 20 
+Enter the postfix expression 
+21+3- 
+The resultant ans is 0 
+Enter the postfix expression 
+42/ 
+The resultant ans is 2 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 16 
+ 
+    B. Result 
+Enter the infix expression : 
+(a+b)*c/d^e%f 
+The postfix expression is: 
+ab+c*de^/f% 
+
+
+//Program-3 
+
+#include <stdio.h> 
+#include <stdlib.h> 
+#define MAXSIZE 20 
+typedef struct  
+{ 
+    int front, rear; 
+     int item[MAXSIZE]; 
+} queue; 
+queue q1, q2, q3, q4; 
+int a[10], no=0, no2=0; 
+void insert(queue *q, int n)  
+{ 
+if(q->rear==MAXSIZE)  
+     { 
+          printf("Queue is full."); 
+     }  
+     else  
+     { 
+          q->item[++q->rear]=n; 
+     } 
+    } 
+   int delete(queue *q) 
+{ 
+if(q->rear<q->front) 
+printf("Queue is empty."); 
+         else 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 20 
+ 
+          return q->item[q->front++]; 
+   } 
+//Display from Queue 
+void display(queue *q) 
+       { 
+int i; 
+       if(q->rear<q->front)  
+           { 
+printf("Queue is empty."); 
+              }  
+       else  
+              { 
+    no++; 
+    printf("Group %d: Contents of queue%d are ", no,no); 
+    for(i=q->front; i<=q->rear; i++)  
+    { 
+     printf("%d ", q->item[i]); 
+    } 
+   } 
+   printf("\n"); 
+} 
+// Display the temp array 
+void displayQ(int a[])  
+{ 
+no2++; 
+printf("Group %d: Contents of sorted array are ", no2); 
+for(int i=0; a[i]!='\0';i++ 
+{ 
+    printf("%d ", a[i]); 
+          a[i]='\0'; 
+} 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 21 
+ 
+    printf("\n"); 
+} 
+     // Insertion Sort Function 
+void insertionSort() 
+{  
+for (int i = 1; a[i]!='\0'; i++) 
+{  
+    int element = a[i];  
+          int j = i - 1;  
+          while (j >= 0 && a[j] > element)  
+          {  
+              a[j + 1] = a[j];  
+              j = j - 1;  
+         }  
+         a[j + 1] = element;  
+     }  
+} 
+void delete_sort(queue *q)  
+       { 
+for(int i=0;q->item[i]!='\0';i++) 
+{ 
+          a[i]=delete(q); 
+} 
+insertionSort(a); 
+displayQ(a); 
+} 
+void main()  
+{ 
+    q1.front=0,q2.front=0,q3.front=0,q4.front=0; 
+    q1.rear=-1,q2.rear=-1,q3.rear=-1,q4.rear=-1; 
+     int i,n,a[50]; 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 22 
+ 
+    printf("Enter the Elements"); 
+    scanf("%d",&n); 
+          for(i=0;i<n;i++) 
+     { 
+          scanf("%d",&a[i]); 
+     } 
+     // insert with grouping 
+     for(i=0;i<n;i++)  
+     { 
+          if(a[i]>=0 && a[i]<10)  
+          { 
+              insert(&q1, a[i]); 
+          }  
+          else if (a[i]>=10 && a[i]<20) 
+          { 
+              insert(&q2, a[i]); 
+          }  
+          else if (a[i]>=20 && a[i]<30)  
+          { 
+              insert(&q3, a[i]); 
+          }  
+          else if (a[i]>=30)  
+          { 
+              insert(&q4, a[i]); 
+                  } 
+     } 
+    printf("Categorised data into different group:\n"); 
+     display(&q1); 
+    display(&q2); 
+    display(&q3); 
+     display(&q4); 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 23 
+ 
+     printf("\nSorted data:\n"); 
+     delete_sort(&q1); 
+     delete_sort(&q2); 
+     delete_sort(&q3); 
+     delete_sort(&q4); 
+} 
+ 
+4.6 Results: 
+Enter the Elements 18 
+3  22   16   12   10   34   65   29   9   30   81   4   5   19   20   57   44   99 
+Categorised data into different group: 
+Group 1: Contents of queue1 are 3 9 4 5  
+Group 2: Contents of queue2 are 16 12 10 19  
+Group 3: Contents of queue3 are 22 29 20  
+Group 4: Contents of queue4 are 34 65 30 81 57 44 99  
+Sorted data: 
+Group 1: Contents of sorted array are 3 4 5 9  
+Group 2: Contents of sorted array are 10 12 16 19  
+Group 3: Contents of sorted array are 20 22 29  
+Group 4: Contents of sorted array are 30 34 44 57 65 81 99
+
+
+//Program -4 
+
+#include<stdio.h> 
+#include<stdlib.h> 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 27 
+ 
+#define MS 5 
+typedef struct 
+{ 
+ int front,rear; 
+ float item[MS]; 
+}cqueue; 
+cqueue cq; 
+void cqinsert(float val) 
+{ 
+  if(cq.front==(cq.rear+1)%MS) 
+  { 
+   printf("Circular queue is full\n"); 
+  } 
+  else 
+  { 
+       cq.rear=(cq.rear+1)%MS; 
+   cq.item[cq.rear]=val; 
+  } 
+ } 
+float cqdelete() 
+{ 
+  float value; 
+  if(cq.front==cq.rear) 
+  { 
+   printf("Circular queue is empty\n"); 
+  } 
+  else 
+  { 
+   cq.front=(cq.front+1)%MS; 
+   value=cq.item[cq.front]; 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 28 
+ 
+   printf("The deleted element is\n"); 
+   printf("%f",value); 
+  } 
+} 
+void cqdisplay() 
+{ 
+  int i; 
+         if(cq.front==cq.rear) 
+  { 
+   printf("Circular queue is empty\n"); 
+  } 
+        else 
+        {     
+         for(i=cq.front+1;(cq.rear+1)%MS!=(i)%MS;i++) 
+            { 
+                printf("%f\t",cq.item[i%MS]); 
+            } 
+        } 
+} 
+void main() 
+{ 
+ cq.front=MS-1; 
+ cq.rear=MS-1; 
+ int ch; 
+ float m; 
+ while(1) 
+ { 
+  printf("\n\tMenu\n1.Cqinsert\n2.Cqdelete\n3.Cqdisplay\n4.Exit\n"); 
+  printf("Enter your option\n"); 
+  scanf("%d",&ch); 
+  switch(ch) 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 29 
+ 
+  { 
+   case 1: printf("Enter the element to be inserted\n");       
+         scanf("%f",&m); 
+         cqinsert(m); 
+         break; 
+   case 2:cqdelete(); 
+        break; 
+   case 3:cqdisplay(); 
+        break; 
+   case 4:exit(0); 
+   default: printf("Invalid choice\n"); 
+  } 
+ } 
+} 
+
+
+//Program -5 
+
+#include<stdio.h> 
+#include<stdlib.h> 
+#include<malloc.h> 
+#define MS 5 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 38 
+ 
+int c; 
+struct student 
+{ 
+   char usn[10],name[25],dept[12],phon[11]; 
+   float marks1,marks2,marks3,total,average; 
+   struct student *next; 
+   struct student *prev; 
+}; 
+typedef struct student node; 
+node *getnode(node *head) 
+{ 
+   node *nn; 
+   nn=(node*)malloc(sizeof(node)); 
+   printf("Enter Student details \n"); 
+   printf("USN:"); 
+   scanf("%s",nn->usn); 
+      printf("Name:"); 
+   scanf("%s",nn->name); 
+   printf("Department:"); 
+   scanf("%s",nn->dept); 
+   printf("Phone NO:"); 
+   scanf("%s",nn->phon); 
+   printf("Enter the 3 subject Marks:\n"); 
+   scanf("%f%f%f",&nn->marks1,&nn->marks2,&nn->marks3); 
+   nn->next=nn->prev=NULL; 
+   return nn; 
+} 
+int countnodes(node *head) 
+{ 
+   node *p; 
+   p=head; 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 39 
+ 
+   c=0; 
+   while(p!=NULL) 
+   { 
+    p=p->next; 
+    c++; 
+   } 
+   return c; 
+} 
+node *create(node *head) 
+{ 
+node *nn,*p; 
+   p=head; 
+   if(head==NULL) 
+   { 
+    nn=getnode(head); 
+    head=nn; 
+   } 
+   else 
+   { 
+    nn=getnode(head); 
+    while(p->next!=NULL) 
+    { 
+     p=p->next; 
+    } 
+    p->next=nn; 
+    nn->prev=p; 
+   }  
+   return head; 
+} 
+ 
+ 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 40 
+ 
+node *insertfront(node *head) 
+{ 
+node *nn; 
+   if(countnodes(head)==MS) 
+   { 
+    printf("Insertion is not possible\n"); 
+   } 
+   else 
+   { 
+    nn=getnode(head); 
+    if(head==NULL) 
+    {  
+     head=nn; 
+    } 
+    else 
+    { 
+     nn->next=head; 
+     head->prev=nn; 
+     head=nn; 
+    } 
+   } 
+   return head; 
+} 
+node *insertrear(node *head) 
+{ 
+   node *nn; 
+   if(countnodes(head)==MS) 
+   { 
+    printf("Insertion is not possible\n"); 
+   } 
+   else 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 41 
+ 
+   { 
+    head=create(head); 
+   } 
+   return head; 
+  } 
+  node *display(node *head) 
+{ 
+   node *p; 
+   if(head==NULL) 
+   { 
+    printf("No data\n"); 
+   } 
+   else 
+   { 
+    p=head; 
+   printf("USN\tNAME\tDEPARTMENT\tPhoneNO\t\tMARKS1\tMARKS2\tMARKS3\t 
+TOTAL\tAVERAGE\n"); 
+    while(p!=NULL) 
+    { 
+                      p->total=p->marks1+p->marks2+p->marks3; 
+                      p->average=p->total/3; 
+                      printf("%s\t%s\t%s\t%s\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\n",p->usn,p->name, 
+                                  p->dept,p->phon,p->marks1,p->marks2,p->marks3,p->total,p->average); 
+          p=p->next; 
+    } 
+   } 
+   printf("The number of nodes in list is %d\n",countnodes(head)); 
+   return head; 
+} 
+ 
+ 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 42 
+ 
+ 
+node *deletefront(node *head) 
+{ 
+   node *p; 
+   if(head==NULL) 
+   { 
+    printf("No data\n"); 
+   } 
+   else if(countnodes(head)==1) 
+   { 
+    p=head; 
+    head=NULL; 
+    free(p); 
+   } 
+   else 
+   { 
+    p=head; 
+    (head->next)->prev=NULL; 
+    head=head->next; 
+    p->next=NULL; 
+    free(p); 
+   } 
+   return head; 
+} 
+node *deleterear(node *head) 
+{ 
+node *p,*q; 
+  if(head==NULL) 
+  { 
+   printf("No data\n"); 
+  } 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 43 
+ 
+  else if(countnodes(head)==1) 
+  { 
+   p=head; 
+   head=NULL; 
+   free(p); 
+  } 
+  else 
+  { 
+   p=head; 
+   while(p->next!=NULL) 
+   { 
+    p=p->next; 
+   } 
+   q=p->prev; 
+   q->next=NULL; 
+   p->prev=NULL; 
+   free(p); 
+  } 
+  return head; 
+} 
+void main() 
+{ 
+int ch,i,n; 
+   node *head; 
+   head=NULL; 
+   do 
+   {  
+printf("\n\t*....Student Data......*"); 
+     printf("\n1.Create\n2.Display\n3.Insert_Front\n4.Insert_Rear\n5.Delete_Front\n 
+                         6.Delete_Rear\n7.Exit\n"); 
+     printf("Enter your choice\n"); 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 44 
+ 
+    scanf("%d",&ch); 
+    switch(ch) 
+    { 
+     case 1:printf("Enter number of  Student\n"); 
+          scanf("%d",&n); 
+                for(i=0;i<n;i++) 
+                head=create(head); 
+                break; 
+     case 2:head=display(head); 
+                       break; 
+     case 3:head=insertfront(head); 
+                      break; 
+     case 4:head=insertrear(head); 
+                       break; 
+                         case 5: head=deletefront(head); 
+                                      break; 
+                         case 6:head=deleterear(head); 
+                                     break; 
+     case 7:exit(0); 
+     default:printf("Invalid choice\n"); 
+    } 
+  }while(ch>=1&&ch<=6);  
+} 
+
+
+//Porgram-6 
+
+#include<stdio.h> 
+#include<malloc.h> 
+#include<math.h> 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 55 
+ 
+#include<stdlib.h> 
+struct poly 
+{ 
+  int cf,px,py,pz; 
+  int flag; 
+             struct poly *next; 
+}; 
+typedef struct poly node; 
+node* getnode() 
+{ 
+  node *nn; 
+  nn=(node*)malloc(sizeof(node)); 
+  if(nn==NULL) 
+  { 
+   printf("Insufficient memory\n"); 
+   exit(0); 
+  } 
+  return nn; 
+} 
+void display(node *head) 
+{ 
+  node *p; 
+  if(head->next==head) 
+  { 
+   printf("Polynomial does not exist\n"); 
+   return; 
+  } 
+  p=head->next; 
+  while(p!=head) 
+  { 
+   printf("%dx^%dy^%dz^%d",p->cf,p->px,p->py,p->pz); 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 56 
+ 
+   if(p->next!= head) 
+   printf(" + "); 
+   p=p->next; 
+  } 
+} 
+node* insert_rear(int cf,int x,int y,int z,node *head) 
+{ 
+  node *p,*v; 
+  p=getnode(); 
+  p->cf=cf; 
+  p->px=x; 
+  p->py=y; 
+  p->pz=z; 
+         v=head->next; 
+  while(v->next!=head) 
+  { 
+   v=v->next; 
+  } 
+  v->next=p; 
+  p->next=head; 
+  return head; 
+} 
+node* read_poly(node *head) 
+{ 
+  int px, py, pz, cf, ch; 
+  do 
+{ 
+          printf("Enter coeff: "); 
+   scanf("%d",&cf); 
+   printf("Enter powers of x,y,z\n "); 
+   scanf("%d%d%d",&px,&py,&pz); 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 57 
+ 
+   head=insert_rear(cf,px,py,pz,head); 
+   printf("If your wish to continue press 1 otherwise 0\n"); 
+   scanf("%d", &ch); 
+   }while(ch != 0); 
+  return head; 
+} 
+node* add_poly(node *h1,node *h2,node *h3) 
+{ 
+  node *p1,*p2; 
+  int x1,x2,y1,y2,z1,z2,cf1,cf2,cf; 
+  p1=h1->next; 
+  while(p1!=h1) 
+  { 
+   x1=p1->px; 
+   y1=p1->py; 
+   z1=p1->pz; 
+   cf1=p1->cf; 
+   p2=h2->next; 
+   while(p2!=h2) 
+   { 
+    x2=p2->px; 
+    y2=p2->py; 
+    z2=p2->pz; 
+    cf2=p2->cf; 
+    if(x1==x2 && y1==y2 && z1==z2)break; 
+    p2=p2->next; 
+   } 
+   if(p2!=h2) 
+   { 
+    cf=cf1+cf2; 
+    p2->flag=1; 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 58 
+ 
+    if(cf!=0) 
+    h3=insert_rear(cf,x1,y1,z1,h3); 
+   } 
+   else 
+    h3=insert_rear(cf1,x1,y1,z1,h3); 
+    p1=p1->next; 
+  } 
+  p2=h2->next; 
+  while(p2!=h2) 
+  { 
+   if(p2->flag==0) 
+   h3=insert_rear(p2->cf,p2->px,p2->py,p2->pz,h3); 
+   p2=p2->next; 
+  } 
+         return h3; 
+} 
+void evaluate(node *head) 
+{ 
+  node *p; 
+  int x, y, z; 
+  int result=0; 
+  p=head->next; 
+  printf("\nEnter x,y,z terms to evaluate:\n"); 
+             scanf("%d%d%d",&x,&y,&z); 
+             while(p!= head) 
+            { 
+           result = result + (p->cf * pow(x,p->px) * pow(y,p->py) * pow(z,p->pz)); 
+           p=p->next; 
+         } 
+  printf("Polynomial result is: %d", result); 
+} 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 59 
+ 
+void main() 
+{ 
+  node *h1,*h2,*h3; 
+  int ch; 
+  h1=getnode(); 
+  h2=getnode(); 
+  h3=getnode(); 
+             h1->next=h1; 
+  h2->next=h2; 
+  h3->next=h3; 
+  while(1) 
+  { 
+   printf("\n\n1.Evaluate polynomial\n2.Add two polynomials\n3.Exit\n"); 
+   printf("Enter your choice: "); 
+   scanf("%d", &ch); 
+   switch(ch) 
+   { 
+    case 1: h1->next=h1; 
+    printf("\nEnter polynomial to evaluate:\n"); 
+    h1=read_poly(h1); 
+    printf("The polynomial is :"); 
+    display(h1); 
+            valuate(h1); 
+                             break; 
+                             case 2: h1->next=h1; 
+           printf("\nEnter the first polynomial:\n"); 
+    h1=read_poly(h1); 
+    printf("\nEnter the second polynomial:\n"); 
+    h2=read_poly(h2); 
+    h3=add_poly(h1,h2,h3); 
+    printf("\nFirst polynomial is: "); 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 60 
+ 
+    display(h1); 
+    printf("\nSecond polynomial is: "); 
+    display(h2); 
+    printf("\nThe sum of 2 polynomials is: \n"); 
+    display(h3); 
+                             case 3: exit(0); 
+                default:printf("\nInvalid entry"); 
+    break; 
+   }   
+           }    
+}
+
+//Program-7 
+# include<stdio.h>  
+# include<stdlib.h>  
+#include<string.h>  
+struct node  
+{  
+      char name[25],phno[15];  
+      struct node* lc, *rc;  
+};  
+typedef struct node *NODE;  
+int delflag;  
+NODE createnode()  
+{  
+      NODE temp;  
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 66 
+ 
+      temp = (NODE)malloc(sizeof(struct node));  
+      printf("Enter the name:");  
+      scanf("%s",temp->name);  
+      printf("Enter the phone number:");  
+      scanf("%s",temp->phno);  
+     temp->lc = NULL;  
+        temp->rc = NULL;  
+         return temp;  
+}  
+void insertBST(NODE root, NODE newNode)  
+{  
+      if(strcmp(newNode->name,root->name)==0)  
+      {  
+          printf("Key already exists\n");  
+          return;  
+      }  
+      else if (strcmp(newNode->name,root->name)<0)  
+      {  
+          if (root->lc == NULL)  
+          root->lc = newNode;  
+          else  
+          insertBST(root->lc, newNode);  
+      }  
+      else  
+      {  
+          if(root->rc == NULL)  
+          root->rc = newNode;  
+          else  
+           insertBST(root->rc, newNode);  
+      }  
+}  
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 67 
+ 
+   int search(NODE root, char keyname[])  
+{  
+      if(!root)  
+      return -1;  
+      if(strcmp(keyname,root->name)==0)  
+      return 1;  
+      else if(strcmp(keyname,root->name)<0)  
+      return search(root->lc, keyname);  
+      else  
+      return search(root->rc,keyname);  
+}  
+  
+NODE getRightMin(NODE root)  
+{  
+         NODE temp = root;  
+     while(temp->lc != NULL)  
+      {  
+          temp = temp->lc;  
+      }  
+       return temp;  
+}  
+  NODE deleteBST(NODE root, char keyname[])  
+{  
+      if(!root)  
+      {  
+          delflag=-1;  
+          return NULL;  
+      }  
+          if(strcmp(keyname,root->name)<0)  
+      root->lc=deleteBST(root->lc, keyname);  
+      else if(strcmp(keyname,root->name)>0)  
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 68 
+ 
+      root->rc=deleteBST(root->rc,keyname);  
+      else  
+      {  
+          if(root->lc==NULL && root->rc==NULL)  
+          {  
+               free(root);  
+               return NULL;  
+          }  
+          else if(root->lc == NULL)  
+          {  
+               NODE temp = root->rc;  
+               free(root);  
+               return temp;  
+          }  
+          else if(root->rc == NULL)  
+          {  
+               NODE temp = root->lc;  
+               free(root);  
+               return temp;  
+          }  
+          else  
+          {  
+               NODE rightMin = getRightMin(root->rc);  
+               strcpy(root->name,rightMin->name);  
+               strcpy(root->phno,rightMin->phno);  
+               root->rc = deleteBST(root->rc,rightMin->name);  
+          }  
+      }  
+      return root;  
+}  
+ 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 69 
+ 
+void inorder(NODE temp)  
+{  
+      if (temp != NULL)  
+      {  
+           inorder(temp->lc);  
+          printf("|%s|%s|\t", temp->name,temp->phno);  
+          inorder(temp->rc);  
+      }  
+}  
+void preorder(NODE temp)  
+{  
+      if (temp != NULL)  
+      {  
+           printf("|%s|%s|\t", temp->name,temp->phno);  
+          preorder(temp->lc);  
+          preorder(temp->rc);  
+      }  
+}  
+void postorder(NODE temp)  
+{  
+      if (temp != NULL)  
+      {  
+          postorder(temp->lc);  
+          postorder(temp->rc);  
+          printf("|%s|%s|\t", temp->name,temp->phno);  
+      }  
+}  
+void main()  
+{  
+      int choice,n,i,keyFound = 0;  
+      char keyname[25];  
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 70 
+ 
+      NODE root=NULL,newNode;  
+      printf("--------------------Creating a BST------------------\n");  
+      printf("Enter the number of records in the BST:");  
+      scanf("%d",&n);  
+      for(i=0;i<n;i++)  
+      {  
+          newNode = createnode();  
+          if(root == NULL)  
+           root = newNode;  
+          else  
+          insertBST(root,newNode);  
+      }  
+      while(1)  
+      {  
+          choice=0;  
+          printf("\n-----------------MENU----------------------\n");  
+           printf("1. Search a list for a specified name\n");  
+          printf("2. Insert a new name\n");  
+          printf("3. Deleting existing name\n");  
+          printf("4. Traverse the phone list\n");  
+          printf("5. Exit\n");  
+          printf("-------------------------------------------\n");  
+          printf("Enter choice : ");  
+          scanf("%d", &choice);  
+          switch(choice)  
+          {  
+               case 1: printf("Enter the name to be searched:");  
+               scanf("%s",keyname);  
+               keyFound = search(root,keyname);  
+               if(keyFound == 1)  
+               printf("Name: %s is found in the BST",keyname);  
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 71 
+ 
+               else  
+               printf("Name: %s is not found in the BST",keyname);  
+               break;  
+               case 2: newNode = createnode();  
+               if(root == NULL)  
+               root = newNode;  
+               else  
+               insertBST(root,newNode);  
+               break;  
+               case 3: if(root == NULL)  
+              {  
+                   printf("Tree is empty\n");  
+               }  
+               else  
+               {  
+                   delflag=0;  
+                   printf("Enter the name to be deleted:");  
+                   scanf("%s",keyname);  
+                   root=deleteBST(root,keyname);  
+                   if(delflag==-1)  
+                   printf("Name: %s is not found in the BST\n",keyname);  
+                  else  
+                   printf("Name: %s is deleted from the BST\n",keyname);  
+               }  
+               break;  
+               case 4: if (root == NULL)  
+               {  
+                   printf("Tree is empty\n");  
+               }  
+               else  
+               {  
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 72 
+ 
+                   printf("BST Preorder travsersal\n");  
+                   preorder(root);  
+                   printf("\nBST Inorder travsersal\n");  
+                   inorder(root);  
+                   printf("\nBST Postorder travsersal\n");  
+                   postorder(root);  
+               }  
+               break;  
+               case 5: return;  
+               default: printf("Wrong choice\n");  
+               return;  
+          }  
+      }  
+}  
+
+//Program -8 
+
+#include<stdio.h> 
+#include<stdlib.h> 
+int st[10],top=-1,v[10],a[10][10],u[10]; 
+int n,q[10],front=0; 
+int rear=-1; 
+void dfs(int s) 
+{ 
+int i; 
+v[s]=1; 
+st[++top]=s; 
+for(i=1;i<=n;i++) 
+{ 
+if(a[s][i]==1&&v[i]==0) 
+{ 
+printf("Officer %d->Officer %d\n",s,i); 
+dfs(i); 
+} 
+} 
+} 
+ 
+void bfs(int s) 
+{ 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 81 
+ 
+int m,i; 
+u[s]=1; 
+q[++rear]=s; 
+printf("Reachable officers using BFS method from a given officer : %d are\n",s); 
+while(front<=rear) 
+{ 
+m=q[front++]; 
+for(i=1;i<=n;i++) 
+{ 
+if(a[m][i]==1&&u[i]==0) 
+{ 
+q[++rear]=i; 
+printf("Officer %d\n",i); 
+u[i]=1; 
+} 
+} 
+} 
+} 
+ 
+void main()  
+{ 
+int s,i,j,ch; 
+while(1) 
+{ 
+printf("1.Create a graph using adjacency matrix indicating people who can 
+communicate directly with each other\n2.DFS traversal method through which 
+any officer can be reachable from a given node\n3.BFS traversal method through 
+which any officer can be reachable from a given node\n4.Exit\n"); 
+printf("Enter the choice\n"); 
+scanf("%d",&ch); 
+switch(ch) 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 82 
+ 
+{ 
+case 1: printf("Enter the number of officers\n"); 
+scanf("%d",&n); 
+printf("Enter the adjacency matrix representation\n"); 
+for(i=1;i<=n;i++) 
+{ 
+for(j=1;j<=n;j++) 
+{ 
+scanf("%d",&a[i][j]); 
+} 
+} 
+break; 
+case 2:printf("Depth First Search Traversal\n"); 
+                         printf("Enter Source Officer\n"); 
+scanf("%d",&s); 
+printf("Reachable officers using DFS method from a given officer:                
+%d\n",s); 
+dfs(s); 
+for(i=1;i<=n;i++) 
+{ 
+if(v[i]==0) 
+{ 
+                                      printf("%d is not visited and it is disconnected graph\n",i); 
+} 
+} 
+break; 
+case 3: printf("Breadth First Search Traversal\n"); 
+printf("Enter Source Officer\n"); 
+scanf("%d",&s); 
+bfs(s); 
+for(i=1;i<=n;i++) 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 83 
+ 
+{ 
+if(u[i]==0) 
+{ 
+printf("Officer %d is not visited and that officer is 
+disconnected\n",i); 
+} 
+} 
+break; 
+case 4:exit(0); 
+default: printf("Invalid choice\n"); 
+} 
+ } 
+  }
+
+
+//Program -9 
+#include<stdio.h> 
+#include<stdlib.h> 
+#include<malloc.h> 
+int *ht,c,n,m,flag; 
+void create() 
+{ 
+  int i; 
+  ht=(int*)malloc(m*sizeof(int)); 
+  if(ht==NULL||m==0) 
+  { 
+   printf("Hash table is not present\n"); 
+  } 
+  for(i=0;i<m;i++) 
+  ht[i]=-1; 
+} 
+void display() 
+{ 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 89 
+ 
+  int i; 
+  printf("The hash table is\n"); 
+  for(i=0;i<m;i++) 
+  { 
+   printf("%d %d\n",i,ht[i]); 
+  } 
+} 
+void insert(int key) 
+{ 
+  int j; 
+  j=key%m; 
+  while(ht[j]!=-1) 
+  { 
+   j=(j+1)%m; 
+   flag=1; 
+  } 
+  if(flag) 
+  { 
+   printf("Collision is detected and it is solved using linear probing\n"); 
+   flag=0; 
+  } 
+  ht[j]=key; 
+  display(); 
+  c++; 
+} 
+void main() 
+{ 
+  int i,key; 
+  printf("Enter the number \n"); 
+  scanf("%d",&n); 
+  printf("Enter the memory size\n"); 
+CS322L5C : DATA STRUCTURES LABORATORY WITH C 
+ 
+Department of Information Science & Engineering, SCEM, Mangaluru.    Page 90 
+ 
+  scanf("%d",&m); 
+  create(); 
+  for(i=0;i<n;i++) 
+  { 
+   if(c!=m) 
+   { 
+    printf("Enter the key\n"); 
+    scanf("%d",&key); 
+    insert(key); 
+   } 
+   else 
+   printf("The hash table is full\n"); 
+  } 
+} 
