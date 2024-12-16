@@ -1,0 +1,155 @@
+Program 1: 
+AREA SQUARE, CODE, READONLY
+ENTRY
+
+START
+LDR R0, =TABLE1
+MOV R1, #3
+MOV R1, R1, LSL#0x2
+ADD R0, R0, R1
+LDR R3, [R0]
+B1 B B1
+
+
+TABLE1
+DCD 0X00000000
+DCD 0X00000001
+DCD 0X00000004
+DCD 0X00000009
+DCD 0X00000024
+DCD 0X00000031
+DCD 0X00000040
+DCD 0X00000051
+DCD 0X00000064
+END
+
+
+
+
+//Program 2
+ AREA AESCENDING, CODE,READONLY
+ENTRY
+START
+MOV R8,#4
+LDR R2,=CVALUE
+LDR R3,=DVALUE
+
+LOOP0
+LDR R1,[R2],#4
+STR R1,[R3],#4
+
+SUBS R8,R8,#1
+CMP R8,#0
+BNE LOOP0
+
+START1
+MOV R5,#3
+MOV R7,#0
+LDR R1,=DVALUE
+
+LOOP
+LDR R2,[R1],#4
+LDR R3,[R1]
+CMP R2,R3
+BLT LOOP2
+STR R2,[R1],#-4
+STR R3,[R1]
+MOV R7,#1
+ADD R1,#4
+
+LOOP2
+
+SUBS R5,R5,#1
+CMP R5,#0
+BNE LOOP
+CMP R7,#0
+BNE START1
+B1 B B1
+
+CVALUE
+DCD 0X44444444
+DCD 0X11111111
+DCD 0X33333333
+DCD 0X22222222
+
+
+AREA DATA1,DATA,READWRITE      
+DVALUE DCD 0X00000000
+END
+
+
+
+//Program3
+AREA ONEZERO, CODE, READONLY
+ENTRY
+START
+MOV R2,#0
+MOV R3,#0
+MOV R7,#2
+LDR R6,=VALUE
+
+LOOP
+MOV R1,#32
+LDR R0,[R6],#4
+LOOP0
+MOVS R0,R0,ROR #1
+BHI ONES
+ZEROS ADD R3,R3,#1
+B LOOP1
+ONES ADD R2,R2,#1
+LOOP1 SUBS R1,R1,#1
+BNE LOOP0
+SUBS R7,R7,#1
+CMP r7,#0
+BNE LOOP
+B1 B B1
+VALUE DCD 0X00000003, 0X00000002
+END
+
+
+
+
+//Program 4 (Stepper Motor)
+#include <LPC21xx.H>
+void clock_wise(void);
+void anti_clock_wise(void);
+unsigned long int var1,var2;
+unsigned int i=0,j=0,k=0;
+int main(void)
+{
+PINSEL0 = 0x00FFFFFF;
+IO0DIR |= 0x0000F000;
+while(1)
+{
+for(j=0;j<50;j++)
+clock_wise();
+for(k=0;k<65000;k++);
+for(j=0;j<50;j++)
+anti_clock_wise();
+for(k=0;k<65000;k++);
+}
+}
+void clock_wise(void)
+{
+var1 = 0x00000800;
+for(i=0;i<=3;i++)
+{
+var1 = var1<<1;
+var2 = var1;
+var2 = var2 & 0x0000F000;
+IO0PIN = var2;
+for (k=0;k<30000;k++);
+}
+}
+void anti_clock_wise(void)
+{
+var1 = 0x00010000;
+for(i=0;i<=3;i++)
+{
+var1 = var1>>1;
+var2 = var1;
+var2 = var2 & 0x0000F000;
+IO0PIN = var2;
+for(k=0;k<3000;k++);
+}
+}
