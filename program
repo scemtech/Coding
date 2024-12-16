@@ -6,10 +6,7 @@ void printdata();
 void makefrequency(); 
 void makehistogram (); 
 
- 
-
- 
-int main() 
+ int main() 
 { 
 getdata(); 
 printdata(); 
@@ -72,28 +69,6 @@ for(int i=0;i<n;i++)
  
  
  
- 
-
- 
-1.6 
-Results 
- 
-Enter the number of elements: 
-10 
-Enter the elements: 
-1  2  1  3  1  5  8  3  9  7 
- 
-1       2       1       3       1       5       8       3       9       7 
-Element   /   Frequency 
-      ----------------------------- 
-      1 |  *  *  *   
-      2 |  *   
-      3 |  *  *   
-      5 |  *   
-      8 |  *   
-      9 |  *   
-7 |  * 
-
 
 //Program -2 
 #include<stdio.h> 
@@ -110,9 +85,7 @@ void push(int value)
 {  
    if(s.top==(MS-1))  
   {  
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 10 
+
  
    printf("overflow\n");  
   } 
@@ -145,10 +118,6 @@ int empty()
 {  
    switch(c)  
   { 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 11 
- 
    case '^':return(pow(a,b)); 
    case '*':return(a*b); 
    case '%':return(a%b); 
@@ -180,10 +149,6 @@ int evaluate()
  return ans; 
 } 
  
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 12 
- 
 void main() 
 { 
   s.top=-1; 
@@ -193,6 +158,10 @@ void main()
   ans=evaluate(); 
   printf("The resultant ans is %d\n",ans); 
 } 
+
+
+
+
 B. Procedure: 
  
 #include<stdio.h> 
@@ -215,9 +184,6 @@ if(s.top==(MS-1))
  
   else 
   { 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 13 
  
     s.item[++s.top]=value; 
   } 
@@ -250,10 +216,6 @@ switch(c)
    case '*': 
    case '/': 
    case '%':return 2; 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 14 
- 
    case '+': 
    case '-':return 1; 
    case '(':return 0;   
@@ -285,9 +247,6 @@ int i,pos=0;
     }  
     break; 
     case '^': 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 15 
  
     case '*': 
     case '/': 
@@ -310,25 +269,9 @@ while((!empty())&&((precedence(s.item[s.top]))>=precedence(symb)))
   } 
   postfix[pos]='\0'; 
 } 
-3.6. A. Results 
-Enter the postfix expression 
-123+*321-+* 
-The resultant ans is 20 
-Enter the postfix expression 
-21+3- 
-The resultant ans is 0 
-Enter the postfix expression 
-42/ 
-The resultant ans is 2 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 16 
- 
-    B. Result 
-Enter the infix expression : 
-(a+b)*c/d^e%f 
-The postfix expression is: 
-ab+c*de^/f% 
+
+
+
 
 
 //Program-3 
@@ -359,10 +302,7 @@ if(q->rear==MAXSIZE)
 if(q->rear<q->front) 
 printf("Queue is empty."); 
          else 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 20 
- 
+
           return q->item[q->front++]; 
    } 
 //Display from Queue 
@@ -394,10 +334,7 @@ for(int i=0; a[i]!='\0';i++
     printf("%d ", a[i]); 
           a[i]='\0'; 
 } 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 21 
- 
+
     printf("\n"); 
 } 
      // Insertion Sort Function 
@@ -429,10 +366,7 @@ void main()
     q1.front=0,q2.front=0,q3.front=0,q4.front=0; 
     q1.rear=-1,q2.rear=-1,q3.rear=-1,q4.rear=-1; 
      int i,n,a[50]; 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 22 
- 
+
     printf("Enter the Elements"); 
     scanf("%d",&n); 
           for(i=0;i<n;i++) 
@@ -464,10 +398,7 @@ Department of Information Science & Engineering, SCEM, Mangaluru.    Page 22
     display(&q2); 
     display(&q3); 
      display(&q4); 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 23 
- 
+
      printf("\nSorted data:\n"); 
      delete_sort(&q1); 
      delete_sort(&q2); 
@@ -475,29 +406,17 @@ Department of Information Science & Engineering, SCEM, Mangaluru.    Page 23
      delete_sort(&q4); 
 } 
  
-4.6 Results: 
-Enter the Elements 18 
-3  22   16   12   10   34   65   29   9   30   81   4   5   19   20   57   44   99 
-Categorised data into different group: 
-Group 1: Contents of queue1 are 3 9 4 5  
-Group 2: Contents of queue2 are 16 12 10 19  
-Group 3: Contents of queue3 are 22 29 20  
-Group 4: Contents of queue4 are 34 65 30 81 57 44 99  
-Sorted data: 
-Group 1: Contents of sorted array are 3 4 5 9  
-Group 2: Contents of sorted array are 10 12 16 19  
-Group 3: Contents of sorted array are 20 22 29  
-Group 4: Contents of sorted array are 30 34 44 57 65 81 99
+
+
+
+
 
 
 //Program -4 
 
 #include<stdio.h> 
 #include<stdlib.h> 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 27 
- 
+
 #define MS 5 
 typedef struct 
 { 
@@ -528,9 +447,7 @@ float cqdelete()
   { 
    cq.front=(cq.front+1)%MS; 
    value=cq.item[cq.front]; 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 28 
+
  
    printf("The deleted element is\n"); 
    printf("%f",value); 
@@ -563,9 +480,7 @@ void main()
   printf("Enter your option\n"); 
   scanf("%d",&ch); 
   switch(ch) 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 29 
+
  
   { 
    case 1: printf("Enter the element to be inserted\n");       
@@ -583,16 +498,18 @@ Department of Information Science & Engineering, SCEM, Mangaluru.    Page 29
 } 
 
 
+
+
+
+
+
 //Program -5 
 
 #include<stdio.h> 
 #include<stdlib.h> 
 #include<malloc.h> 
 #define MS 5 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 38 
- 
+
 int c; 
 struct student 
 { 
@@ -624,10 +541,7 @@ int countnodes(node *head)
 { 
    node *p; 
    p=head; 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 39 
- 
+
    c=0; 
    while(p!=NULL) 
    { 
@@ -658,10 +572,7 @@ node *nn,*p;
    return head; 
 } 
  
- 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 40 
+
  
 node *insertfront(node *head) 
 { 
@@ -694,10 +605,7 @@ node *insertrear(node *head)
     printf("Insertion is not possible\n"); 
    } 
    else 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 41 
- 
+
    { 
     head=create(head); 
    } 
@@ -729,9 +637,7 @@ TOTAL\tAVERAGE\n");
 } 
  
  
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 42 
+
  
  
 node *deletefront(node *head) 
@@ -764,9 +670,7 @@ node *p,*q;
   { 
    printf("No data\n"); 
   } 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 43 
+
  
   else if(countnodes(head)==1) 
   { 
@@ -799,10 +703,7 @@ printf("\n\t*....Student Data......*");
      printf("\n1.Create\n2.Display\n3.Insert_Front\n4.Insert_Rear\n5.Delete_Front\n 
                          6.Delete_Rear\n7.Exit\n"); 
      printf("Enter your choice\n"); 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 44 
- 
+
     scanf("%d",&ch); 
     switch(ch) 
     { 
@@ -828,14 +729,15 @@ Department of Information Science & Engineering, SCEM, Mangaluru.    Page 44
 } 
 
 
+
+
+
 //Porgram-6 
 
 #include<stdio.h> 
 #include<malloc.h> 
 #include<math.h> 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 55 
+
  
 #include<stdlib.h> 
 struct poly 
@@ -868,10 +770,7 @@ void display(node *head)
   while(p!=head) 
   { 
    printf("%dx^%dy^%dz^%d",p->cf,p->px,p->py,p->pz); 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 56 
- 
+
    if(p->next!= head) 
    printf(" + "); 
    p=p->next; 
@@ -903,9 +802,7 @@ node* read_poly(node *head)
    scanf("%d",&cf); 
    printf("Enter powers of x,y,z\n "); 
    scanf("%d%d%d",&px,&py,&pz); 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 57 
+
  
    head=insert_rear(cf,px,py,pz,head); 
    printf("If your wish to continue press 1 otherwise 0\n"); 
@@ -938,9 +835,7 @@ node* add_poly(node *h1,node *h2,node *h3)
    { 
     cf=cf1+cf2; 
     p2->flag=1; 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 58 
+
  
     if(cf!=0) 
     h3=insert_rear(cf,x1,y1,z1,h3); 
@@ -973,10 +868,7 @@ void evaluate(node *head)
          } 
   printf("Polynomial result is: %d", result); 
 } 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 59 
- 
+
 void main() 
 { 
   node *h1,*h2,*h3; 
@@ -1008,10 +900,7 @@ void main()
     h2=read_poly(h2); 
     h3=add_poly(h1,h2,h3); 
     printf("\nFirst polynomial is: "); 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 60 
- 
+
     display(h1); 
     printf("\nSecond polynomial is: "); 
     display(h2); 
@@ -1038,10 +927,7 @@ int delflag;
 NODE createnode()  
 {  
       NODE temp;  
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 66 
- 
+
       temp = (NODE)malloc(sizeof(struct node));  
       printf("Enter the name:");  
       scanf("%s",temp->name);  
@@ -1073,10 +959,7 @@ void insertBST(NODE root, NODE newNode)
            insertBST(root->rc, newNode);  
       }  
 }  
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 67 
- 
+
    int search(NODE root, char keyname[])  
 {  
       if(!root)  
@@ -1108,9 +991,7 @@ NODE getRightMin(NODE root)
           if(strcmp(keyname,root->name)<0)  
       root->lc=deleteBST(root->lc, keyname);  
       else if(strcmp(keyname,root->name)>0)  
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 68 
+
  
       root->rc=deleteBST(root->rc,keyname);  
       else  
@@ -1143,9 +1024,7 @@ Department of Information Science & Engineering, SCEM, Mangaluru.    Page 68
       return root;  
 }  
  
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 69 
+
  
 void inorder(NODE temp)  
 {  
@@ -1178,10 +1057,7 @@ void main()
 {  
       int choice,n,i,keyFound = 0;  
       char keyname[25];  
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 70 
- 
+
       NODE root=NULL,newNode;  
       printf("--------------------Creating a BST------------------\n");  
       printf("Enter the number of records in the BST:");  
@@ -1213,10 +1089,7 @@ Department of Information Science & Engineering, SCEM, Mangaluru.    Page 70
                keyFound = search(root,keyname);  
                if(keyFound == 1)  
                printf("Name: %s is found in the BST",keyname);  
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 71 
- 
+
                else  
                printf("Name: %s is not found in the BST",keyname);  
                break;  
@@ -1248,10 +1121,7 @@ Department of Information Science & Engineering, SCEM, Mangaluru.    Page 71
                }  
                else  
                {  
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 72 
- 
+
                    printf("BST Preorder travsersal\n");  
                    preorder(root);  
                    printf("\nBST Inorder travsersal\n");  
@@ -1291,10 +1161,7 @@ dfs(i);
  
 void bfs(int s) 
 { 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 81 
- 
+
 int m,i; 
 u[s]=1; 
 q[++rear]=s; 
@@ -1326,10 +1193,7 @@ which any officer can be reachable from a given node\n4.Exit\n");
 printf("Enter the choice\n"); 
 scanf("%d",&ch); 
 switch(ch) 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 82 
- 
+
 { 
 case 1: printf("Enter the number of officers\n"); 
 scanf("%d",&n); 
@@ -1361,10 +1225,7 @@ printf("Enter Source Officer\n");
 scanf("%d",&s); 
 bfs(s); 
 for(i=1;i<=n;i++) 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 83 
- 
+
 { 
 if(u[i]==0) 
 { 
@@ -1398,9 +1259,7 @@ void create()
 } 
 void display() 
 { 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 89 
+
  
   int i; 
   printf("The hash table is\n"); 
@@ -1433,9 +1292,7 @@ void main()
   printf("Enter the number \n"); 
   scanf("%d",&n); 
   printf("Enter the memory size\n"); 
-CS322L5C : DATA STRUCTURES LABORATORY WITH C 
- 
-Department of Information Science & Engineering, SCEM, Mangaluru.    Page 90 
+
  
   scanf("%d",&m); 
   create(); 
