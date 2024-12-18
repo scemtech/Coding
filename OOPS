@@ -104,8 +104,7 @@ import java.util.Scanner;
 public class Finance  
 { 
 double initial_deposit; 
-double maturity_period; 
-Department of ISE & CSE (Data Science) 
+double maturity_period;
 double annual_percentage_yeild; 
 void read(Double id, Double mp, Double apy) 
 { 
@@ -132,16 +131,14 @@ System.out.println("The Maturity Period in months:"+maturity_period);
 System.out.println("The Annual Percentage Yield:"+annual_percentage_yeild);  
 } 
 } 
-Object Oriented Programming Concepts, (CS322I3C) 
-Page 7 
-Department of ISE & CSE (Data Science) 
+
 class Demo 
 { 
-} 
+
 public static void main(String args[]) 
 { 
-} 
-Output:- 
+
+
 Double id,mp,apy; 
 Finance F=new Finance(); 
 System.out.println("Enter the initial deposit, maturity period and annual 
@@ -154,4 +151,552 @@ F.read(id,mp,apy);
 F.display(); 
 F.calculate_CD();  
 System.out.println(""); 
-Enter the initial deposits, maturity period and annual percentage yeild
+}
+}
+
+
+
+
+//Program -4 
+
+public class foreach{ 
+public static void main(String [] args){ 
+int n; 
+for(n=10;n>0;n--) 
+system.out.println(“tick”+n); 
+} 
+} 
+
+public class foreach{ 
+public static void main(String args){ 
+int nums[]={1,2,3,4,5,6,7,8,9,10}; 
+int sum=0; 
+for(intx:nums) 
+{ 
+System.out.println(“Value is:”+x); 
+Sum+=x; 
+} 
+System.out.println(“summation:”+sum); 
+} 
+} 
+
+
+
+
+public static while{ 
+public static void main(String[] args){ 
+int n=10; 
+while(n>0); 
+System.out.println(“tick”+n);
+
+
+n--; 
+} 
+} 
+} 
+ 
+
+ 
+public class Dowhile{ 
+public static void main(string[]args){ 
+int n=10; 
+do 
+{ 
+System.out.println(“tick”+n); 
+n--; 
+} 
+while(n>0); 
+} 
+}
+
+
+//Program 5 
+
+package Mypackage; 
+import java.util.*; 
+class Vehicle { 
+String vehicle_no; 
+long fuel_capacity; 
+float fuel_consumption; 
+Scanner S = new Scanner(System.in); 
+void read(){ 
+System.out.printf("Enter Vehicle number: "); 
+vehicle_no = S.next(); 
+System.out.printf("Enter Fuel Capacity: "); 
+fuel_capacity = S.nextLong(); 
+System.out.printf("Enter Fuel Consumption: "); 
+fuel_consumption = S.nextFloat(); 
+} 
+} 
+class Truck extends Vehicle { 
+long cargo_capacity; 
+void read() { 
+super.read(); 
+System.out.printf("Enter Cargo Capacity: "); 
+cargo_capacity = S.nextLong(); 
+
+} 
+void display() { 
+System.out.println("Vehicle No: "+vehicle_no); 
+System.out.println("Fuel Capacity: "+fuel_capacity); 
+System.out.println("Fuel Consumption: "+fuel_consumption); 
+System.out.println("Cargo Capacity: "+cargo_capacity+"\n"); 
+} 
+} 
+class Bus extends Vehicle { 
+long seating_capacity; 
+void read() { 
+super.read(); 
+System.out.printf("Enter Seating Capacity: "); 
+seating_capacity = S.nextLong(); 
+} 
+void display() { 
+System.out.println("Vehicle No: "+vehicle_no); 
+System.out.println("Fuel Capacity: "+fuel_capacity); 
+System.out.println("Fuel Consumption: "+fuel_consumption); 
+System.out.println("Seating Capacity: "+seating_capacity); 
+} 
+} 
+public class Mypackage{ 
+public static void main(String[] args) { 
+Truck truck = new Truck(); 
+Bus bus = new Bus(); 
+System.out.println("Truck:"); 
+truck.read(); 
+truck.display(); 
+System.out.println("Bus:"); 
+bus.read(); 
+bus.display(); 
+} 
+} 
+
+//Experiment -6 
+
+package CurrencyConverter;  
+public class CurrencyConverter  
+{  
+public double dollortoinr(double x)  
+{  
+double inr=x*67.86;  
+return inr;  
+}  
+public double inrtodollor(double x)  
+{ 
+double dollor=x/67.86;  
+return dollor;  
+}  
+public double eurotoinr(double x)  
+{  
+double inr=x*79.18;  
+return inr;  
+}  
+public double inrtoeuro(double x)  
+{  
+double euro=x/79.18;  
+return euro;  
+}  
+public double yentoinr(double x)  
+{  
+double inr=x*0.62;  
+return inr;  
+}  
+public double inrtoyen(double x)  
+{  
+double yen=x/0.62;  
+return yen;  
+}  
+}
+
+package DistanceConverter;  
+public class DistanceConverter  
+{  
+public double metertokm(double x)  
+{  
+double km=x*0.001;  
+return km;  
+}  
+public double kmtometer(double x)  
+{  
+double meter=x/0.001;  
+return meter;  
+}  
+public double milestokm(double x)  
+{  
+double km=x*1.60934; 
+return km;  
+}  
+public double kmtomiles(double x)  
+{  
+double miles=x/1.60394;  
+return miles;  
+}  
+} 
+package TimeConverter;  
+public class TimeConverter  
+{  
+public double hourstominutes(double x)  
+{  
+double minutes=x*60;  
+return minutes;  
+}  
+public double minutestohours(double x)  
+{  
+double hours=x/60;  
+return hours;  
+}  
+public double hourstoseconds(double x)  
+{  
+double seconds=x*3600;  
+return seconds;  
+}  
+public double secondstohours(double x) 
+
+{  
+double hours=x/3600;  
+return hours;  
+}  
+} 
+import CurrencyConverter.*;  
+import DistanceConverter.*;  
+import TimeConverter.*;  
+import java.io.*;  
+import java.util.*; 
+class Converter  
+{  
+public static void main(String args[])  
+{  
+System.out.println("1.CurrencyConverter");  
+System.out.println("2.DistanceConverter");  
+System.out.println("3.TimeConverter");  
+Converter cr = new Converter();  
+Scanner c = new Scanner(System.in);  
+int choice = c.nextInt();  
+String op = null;  
+switch(choice)  
+{  
+case 1: cr.Currency(); break;  
+case 2: cr.Distance(); break;  
+case 3: cr.Time(); break;  
+default:  
+System.out.println("Invalid case");  
+return;  
+}  
+} 
+public void Currency()  
+{  
+Scanner in = new Scanner(System.in);  
+System.out.println("Welcome to Currency Converter");  
+System.out.println("Enter the amount :");  
+double amt = in.nextInt();  
+CurrencyConverter cc = new CurrencyConverter();  
+System.out.println("DOLLOR="+amt+" is INR="+cc.dollortoinr(amt));  
+System.out.println("INR="+amt+" is DOLLOR="+cc.inrtodollor(amt));  
+System.out.println("EURO="+amt+" is INR="+cc.eurotoinr(amt)); 
+
+System.out.println("INR="+amt+" is EURO="+cc.inrtoeuro(amt));  
+System.out.println("YEN="+amt+" is INR="+cc.yentoinr(amt));  
+System.out.println("INR="+amt+" is YEN="+cc.inrtoyen(amt));  
+} 
+public void Distance()  
+{  
+Scanner in = new Scanner(System.in);  
+System.out.println("Welcome to Distance Converter");  
+System.out.println("Enter the distance :");  
+double dis = in.nextInt();  
+DistanceConverter dd = new DistanceConverter(); 
+System.out.println("METER="+dis+" is KM="+dd.metertokm(dis));  
+System.out.println("KM="+dis+" is METER="+dd.kmtometer(dis));  
+System.out.println("MILES="+dis+" is KM="+dd.milestokm(dis));  
+System.out.println("KM="+dis+" is MILES="+dd.kmtomiles(dis));  
+}  
+public void Time()  
+{  
+Scanner out = new Scanner(System.in);  
+System.out.println("Welcome to Time Converter");  
+System.out.println("Enter the time :");  
+double tim = out.nextInt();  
+TimeConverter tt = new TimeConverter();  
+System.out.println("HOURS="+tim+" is MINUTES="+tt. hourstominutes(tim));  
+System.out.println("MINUTES="+tim+" is HOURS="+tt.minutestohours(tim));  
+System.out.println("HOURS="+tim+" is SECONDS="+tt.hourstoseconds(tim));  
+System.out.println("SECONDS="+tim+" is HOURS="+tt.secondstohours(tim));  
+}  
+}
+
+//Program -7 
+
+class Buffer 
+{ 
+int MAX; 
+int[] q; 
+int front,rear,size; 
+public Buffer(int s) 
+{ 
+MAX=s; 
+rear=-1; 
+front=0; 
+size=0; 
+q=new int[MAX]; 
+} 
+public synchronized void insert(int ch) 
+{ 
+try 
+{ 
+while(size==MAX) 
+{ 
+wait(); 
+} 
+rear=(rear+1)%MAX; 
+q[rear]=ch; 
+size++; 
+notifyAll(); 
+} 
+catch(InterruptedException e)  
+{ 
+e.printStackTrace(); 
+} 
+} 
+public synchronized int delete() 
+{ 
+int ch=0; 
+try 
+{ 
+while(size==0) 
+{ 
+wait();
+
+} 
+ch=q[front]; 
+front=(front+1)%MAX; 
+size--; 
+notifyAll(); 
+} 
+catch(InterruptedException e)  
+{ 
+e.printStackTrace(); 
+} 
+return ch; 
+} 
+} 
+class consumers extends Thread 
+{ 
+Buffer b; 
+public consumers(Buffer a) 
+{ 
+b=a; 
+} 
+public void run() 
+{ 
+while(!Thread.currentThread().isInterrupted()) 
+{ 
+int c=b.delete(); 
+System.out.println(c); 
+} 
+} 
+} 
+class producers extends Thread 
+{ 
+Buffer b1; 
+public producers(Buffer a) 
+{ 
+b1=a; 
+} 
+public void run() 
+{ 
+for(int c=0;c<10;c++) 
+b1.insert(c); 
+} 
+} 
+public class boundedBuffer { 
+public static void main(String[] args) { 
+Buffer Q=new Buffer(5); 
+producers p=new producers(Q); 
+
+consumers c=new consumers(Q); 
+p.start(); 
+c.start(); 
+try 
+{ 
+p.join(); 
+c.interrupt(); 
+} 
+catch(InterruptedException e)  
+{ 
+e.printStackTrace(); 
+} 
+} 
+} 
+ 
+//Program -8 
+Producer Consumer Problem: 
+class Q { 
+int val; 
+boolean flag=false; 
+synchronized int get() 
+{ 
+if(!flag) 
+try 
+{ 
+wait(); 
+} 
+catch(InterruptedException e) 
+{ 
+e.printStackTrace(); 
+} 
+System.out.println("Consumer consuming "+val); 
+flag=false; 
+notify(); 
+return val; 
+} 
+synchronized void put(int val) 
+{ 
+if(flag) 
+try 
+{ 
+wait(); 
+} 
+catch(InterruptedException e) 
+{ 
+e.printStackTrace(); 
+} 
+this.val=val; 
+flag=true; 
+System.out.println("Producer Producing "+val); 
+notify(); 
+} 
+} 
+class producer extends Thread 
+{ 
+Q obj; 
+producer(Q t) 
+{ 
+obj=t; 
+
+} 
+public void run() 
+{ 
+for(int i=0;i<10;i++) 
+{ 
+obj.put(i); 
+} 
+} 
+} 
+class consumer extends Thread 
+{ 
+Q obj1; 
+consumer(Q t) 
+{ 
+obj1=t; 
+} 
+public void run() 
+{ 
+for(int i=0;i<10;i++) 
+{ 
+obj1.get(); 
+} 
+} 
+} 
+public class PC { 
+public static void main(String[] args) { 
+Q q = new Q(); 
+producer p=new producer(q); 
+consumer c=new consumer(q); 
+p.start(); 
+c.start(); 
+} 
+}
+
+//Program -9 
+MouseEventDemo.java 
+import java.awt.*; 
+import java.awt.event.*; 
+import javax.swing.*; 
+public class MouseEventDemo extends JFrame implements MouseListener { 
+private JLabel label; 
+private JPanel panel; 
+public MouseEventDemo() { 
+super("Mouse Event Demo"); 
+setLayout(new FlowLayout()); 
+label = new JLabel("No mouse event detected"); 
+panel = new JPanel(); 
+panel.setPreferredSize(new Dimension(200, 200)); 
+panel.setBackground(Color.WHITE); 
+panel.addMouseListener(this); 
+add(label); 
+add(panel); 
+} 
+public void mouseClicked(MouseEvent event) { 
+label.setText("Mouse clicked"); 
+} 
+public void mousePressed(MouseEvent event) { 
+label.setText("Mouse pressed"); 
+} 
+public void mouseReleased(MouseEvent event) { 
+label.setText("Mouse released"); 
+} 
+public void mouseEntered(MouseEvent event) { 
+label.setText("Mouse entered"); 
+} 
+public void mouseExited(MouseEvent event) { 
+label.setText("Mouse exited"); 
+} 
+public static void main(String[] args) { 
+MouseEventDemo form = new MouseEventDemo(); 
+form.setSize(300, 150); 
+form.setVisible(true); 
+form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+} 
+}
+
+//Program Key Event
+
+import java.awt.*; 
+import java.awt.event.*; 
+import javax.swing.*; 
+public class KeyboardEventExample extends JFrame implements KeyListener { 
+private JTextField textField; 
+public KeyboardEventExample() { 
+super("Keyboard Event Example"); 
+textField = new JTextField(20); 
+textField.addKeyListener(this); 
+add(textField); 
+}public void keyPressed(KeyEvent e) { 
+System.out.println("Key Pressed: " + e.getKeyChar()); 
+} public void keyReleased(KeyEvent e) { 
+System.out.println("Key Released: " + e.getKeyChar()); 
+} 
+public void keyTyped(KeyEvent e) { 
+System.out.println("Key Typed: " + e.getKeyChar()); 
+} 
+public static void main(String[] args) { 
+KeyboardEventExample form = new KeyboardEventExample(); 
+form.setSize(300, 100); 
+form.setVisible(true); 
+form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+} 
+} 
+
+
+
+
+//Program 10
+import javax.swing.*; 
+import java.awt.FlowLayout; 
+public class swingDemo { 
+public static void main(String args[]) { 
+JFrame f=new JFrame("User Form"); 
+f.setVisible(true); 
+f.setSize(400,400); 
+f.setLayout(new FlowLayout()); 
+JLabel l1=new JLabel("User Name:"); 
+f.add(l1); 
+JTextField  t1=new JTextField(20); 
+f.add(t1); 
+JLabel l2=new JLabel("Password:"); 
+f.add(l2); 
+JPasswordField  t2=new JPasswordField(20); 
+f.add(t2); 
+JButton b=new JButton("Submit"); 
+f.add(b); 
+} 
+} 
