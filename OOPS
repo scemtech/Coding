@@ -1,7 +1,5 @@
-Experiment 1:- Implement a C++ Program to demonstrate the concepts of Class, Object and 
-Constructors by creating a class that holds the basic information of students belonging to an 
-Engineering College.  
-Program:- 
+ 
+//Program 1
 #include <iostream> 
 #include <string> 
 using namespace std; 
