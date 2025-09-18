@@ -1,0 +1,66 @@
+import java.util.*;
+import java.io.*;
+
+public class LeakyBucket {
+    public static void main(String[] args) {
+        int drop = 0, min = 0, outputRate, bucketSize, nSec, pRemain = 0;
+        int packet[] = new int[100];
+
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Enter the bucket size: ");
+        bucketSize = in.nextInt();
+
+        System.out.print("Enter the output rate: ");
+        outputRate = in.nextInt();
+
+        System.out.print("Enter the number of seconds to simulate: ");
+        nSec = in.nextInt();
+
+        Random rand = new Random();
+
+        // Generate packets randomly
+        for (int i = 0; i < nSec; i++) {
+            packet[i] = rand.nextInt(1000);
+        }
+
+        System.out.println("\nSecond | Packet Received | Packet Sent | Packet Left | Packet Dropped");
+
+        // Simulation for each second
+        for (int i = 0; i < nSec; i++) {
+            pRemain += packet[i];  // Add incoming packets
+
+            if (pRemain > bucketSize) {
+                drop = pRemain - bucketSize;
+                pRemain = bucketSize;
+            }
+
+            System.out.print((i + 1) + "\t\t\t\t" + packet[i] + "\t\t\t\t");
+
+            min = Math.min(pRemain, outputRate);
+            System.out.print(min + "\t\t\t\t");
+
+            pRemain -= min;
+            System.out.print(pRemain + "\t\t\t\t");
+            System.out.print(drop + "\n");
+
+            drop = 0;  // reset dropped packets
+        }
+
+        // Handle remaining packets after nSec simulation
+        while (pRemain != 0) {
+            if (pRemain > bucketSize) {
+                drop = pRemain - bucketSize;
+                pRemain = bucketSize;
+            }
+
+            min = Math.min(pRemain, outputRate);
+            System.out.print(" \t\t" + pRemain + "\t\t" + min + "\t\t" + (pRemain - min) + "\t\t" + drop);
+
+            pRemain -= min;
+            drop = 0;
+        }
+
+        in.close();
+    }
+}
